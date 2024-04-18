@@ -1,0 +1,168 @@
+body {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  /* font-weight:; */
+  color:white;
+  background: rgb(24, 24, 27);
+  font-style: normal;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.cursor {
+  position: absolute;
+  background-color: #fff;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  z-index: 1;
+  transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+      0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity;
+  user-select: none;
+  pointer-events: none;
+  z-index: 10000;
+  transform: scale(1);
+
+  &.active {
+      opacity: 0.5;
+      transform: scale(0);
+  }
+
+  &.hovered {
+      opacity: 0.08;
+  }
+}
+
+.cursor-follower {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  z-index: 1;
+  transition: 0.6s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform,
+      0.2s cubic-bezier(0.75, -0.27, 0.3, 1.33) opacity;
+  user-select: none;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(5px, 5px);
+
+  &.active {
+      opacity: 0.7;
+      transform: scale(3);
+  }
+
+  &.hovered {
+      opacity: 0.08;
+  }
+}
+
+/* .headroom--unfixed {
+  position: relative;
+  transform: translateY(0);
+}
+
+
+.headroom--unpinned {
+  position: fixed;
+  transform: translateY(100%);
+}
+.headroom--pinned {
+  position: fixed;
+  transform: translateY(0%);
+} */
+
+/* .over{
+  opacity: 0;
+ 
+  transform: translateY(-100%);
+}
+
+.project:hover .over{
+     transform: translateY(100%);
+     opacity: 1;
+     background: #000;
+} */
+
+
+
+.button {
+  
+  --offset: 10px;
+  --border-size: 2px;
+  
+  display: block;
+  position: relative;
+  padding: 1em 1em;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 0;
+  box-shadow: inset 0 0 0 var(--border-size) currentcolor;
+  transition: background .8s ease;
+  
+  &:hover {
+    background: rgba(100, 0, 0, .03);
+    color: rgb(24, 24, 27);
+  }
+  
+  &__horizontal,
+  &__vertical {
+    position: absolute;
+    top: var(--horizontal-offset, 0);
+    right: var(--vertical-offset, 0);
+    bottom: var(--horizontal-offset, 0);
+    left: var(--vertical-offset, 0);
+    transition: transform .8s ease;
+    will-change: transform;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      border: inherit;
+    }
+  }
+  
+  &__horizontal {
+    --vertical-offset: calc(var(--offset) * -1);
+    border-top: var(--border-size) solid currentcolor;
+    border-bottom: var(--border-size) solid currentcolor;
+    
+    &::before {
+      top: calc(var(--vertical-offset) - var(--border-size));
+      bottom: calc(var(--vertical-offset) - var(--border-size));
+      left: calc(var(--vertical-offset) * -1);
+      right: calc(var(--vertical-offset) * -1);
+    }
+  }
+  
+  &:hover &__horizontal {
+    transform: scaleX(0);
+  }
+  
+  &__vertical {
+    --horizontal-offset: calc(var(--offset) * -1);
+    border-left: var(--border-size) solid currentcolor;
+    border-right: var(--border-size) solid currentcolor;
+    
+    &::before {
+      top: calc(var(--horizontal-offset) * -1);
+      bottom: calc(var(--horizontal-offset) * -1);
+      left: calc(var(--horizontal-offset) - var(--border-size));
+      right: calc(var(--horizontal-offset) - var(--border-size));
+    }
+  }
+  
+  &:hover &__vertical {
+    transform: scaleY(0);
+  }
+  
+}
